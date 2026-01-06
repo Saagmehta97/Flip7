@@ -35,36 +35,35 @@ function GameScreen({ sessionId, currentPlayerId }: { sessionId: string; current
   const currentPlayer = players.find(p => p.id === currentPlayerId);
 
   return (
-    <div className="min-h-screen bg-gray-100 py-8">
-      <div className="max-w-4xl mx-auto px-4">
-        <h1 className="text-4xl font-bold text-center mb-8">Flip 7 Scorecard</h1>
+    <div className="min-h-screen bg-gray-100 py-4 sm:py-8">
+      <div className="max-w-4xl mx-auto px-3 sm:px-4">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4 sm:mb-6 md:mb-8">Flip 7 Scorecard</h1>
         
-        <div className="mb-6 text-center">
-          <div className="inline-block bg-white px-4 py-2 rounded-lg shadow">
-            <span className="text-sm text-gray-600">Game ID: </span>
-            <span className="font-mono font-semibold">{sessionId}</span>
+        <div className="mb-4 sm:mb-6 text-center">
+          <div className="inline-block bg-white px-3 sm:px-4 py-2 rounded-lg shadow">
+            <span className="text-xs sm:text-sm text-gray-600">Game ID: </span>
+            <span className="font-mono font-semibold text-xs sm:text-sm">{sessionId}</span>
             <button
               onClick={() => {
                 navigator.clipboard.writeText(window.location.href);
                 alert('Link copied to clipboard!');
               }}
-              className="ml-2 text-blue-600 hover:text-blue-700 text-sm"
+              className="ml-2 text-blue-600 hover:text-blue-700 active:text-blue-800 text-xs sm:text-sm font-semibold py-1 px-2 rounded active:bg-blue-50"
             >
               Copy Link
             </button>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div>
-            <PlayerList players={players} currentPlayerId={currentPlayerId} />
-          </div>
-          
+        <div className="grid grid-cols-1 gap-4 sm:gap-6">
           {currentPlayer && (
             <div>
               <PlayerControls player={currentPlayer} sessionId={sessionId} />
             </div>
           )}
+          <div>
+            <PlayerList players={players} currentPlayerId={currentPlayerId} />
+          </div>
         </div>
       </div>
     </div>
